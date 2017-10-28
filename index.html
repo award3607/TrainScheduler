@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Train Scheduler</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron text-center"><h1>Train Scheduler</h1></div>
+
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading"><h3>Current Train Schedule</h3></div>
+				<div class="panel-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Train Name</th>
+								<th>Destination</th>
+								<th>Frequency (min)</th>
+								<th>Next Arrival</th>
+								<th>Minutes Away</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-heading"><h3>Add Train</h3></div>
+				<div class="panel-body">
+					<div class="form-group">
+						<label for="train-name">Train Name</label>
+						<input type="text" name="train-name" id="train-name" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="train-destination">Destination</label>
+						<input type="text" name="train-destination" id="train-destination" class="form-control">		
+					</div>
+					<div class="form-group">
+						<label for="train-first-time">First Train Time (HH:mm - 24-hour clock)</label>
+						<input type="text" name="train-first-time" id="train-first-time" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="train-frequency">Frequency</label>
+						<input type="text" name="train-frequency" id="train-frequency" class="form-control">
+					</div>
+					<button id="submit-button" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="assets/javascript/app.js"></script>
+</body>
+</html>
