@@ -69,19 +69,20 @@ function getArrivalData(firstTime, frequency) {
 		
 	//minutesAway is the difference between arrival and now
 	data.minutesAway = (arrival.getTime() - now.getTime()) / 60 / 1000;
-	var arrivalHour = arrival.getHours().toString();
-	var arrivalMinute;
-	if (arrival.getMinutes() < 10) {
-		arrivalMinute = 
-	}
-	var arrivalMinute = arrival.getMinutes().toString();
-	data.nextTime = arrival.getHours().toString() + ":" + arrival.getMinutes().toString();
+	console.log("Hour: " + arrival.getHours().toString() + " Minute: " + arrival.getMinutes().toString())
+	var arrivalHour = prependZero(arrival.getHours().toString());
+	var arrivalMinute = prependZero(arrival.getMinutes().toString());
+	data.nextTime = arrivalHour + ":" + arrivalMinute;
+	console.log("The next train is at: " + data.nextTime);
 
 	return data;
 }
 
-function padMinuteString(s) {
-	if(s.length > 1) {
-		s.
+function prependZero(s) {
+	console.log("inside prependZero. s = " + s + " s.length = " + s.length);
+	var x = s;
+	if (s.length === 1) {
+		x = "0" + s;
 	}
+	return x;
 }
