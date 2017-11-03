@@ -15,7 +15,6 @@ $("#submit-button").on("click", function() {
 	var trainDestination = $("#train-destination").val().trim();
 	var trainFirstTime = $("#train-first-time").val().trim();
 	var trainFrequency = $("#train-frequency").val().trim();
-	console.log(trainName, trainDestination, trainFirstTime, trainFrequency);
 	if(trainName && trainDestination && trainFirstTime && trainFrequency) {
 		database.ref().push({
 			trainName: trainName,
@@ -23,21 +22,15 @@ $("#submit-button").on("click", function() {
 			trainFirstTime: trainFirstTime,
 			trainFrequency: trainFrequency
 		});
+		$("#train-name").val("");
+		$("#train-destination").val("");
+		$("#train-first-time").val("");
+		$("#train-frequency").val("");
 	}
 	else {
 		console.log("Missing field");
 	}
 });
-
-// database.ref().once("value", function(snapshot) {
-// 	snapshot.forEach(function(childSnapshot) {
-// 		console.log(childSnapshot.val());
-// 		// $("tbody").empty();
-// 		displayTrain(childSnapshot.val());
-// 	});
-// 	}, function(errorObject) {
-// 	console.log("The read failed: " + errorObject.code);
-// });
 
 database.ref().on("child_added", function(snapshot) {
 	displayTrain(snapshot.val());
@@ -61,28 +54,21 @@ function getArrivalData(firstTime, frequency) {
 	var arrival = new Date();
 	arrival.setHours(firstTime.split(":")[0], firstTime.split(":")[1]);
 	var now = new Date();
-
 	//if arrival is in the past, add frequency to arrival until the result is in the future
 	while (arrival.getTime() < now.getTime()) {
 		arrival.setTime(arrival.getTime() + (frequency * 60 * 1000));
 	}
-		
 	//minutesAway is the difference between arrival and now
-	data.minutesAway = (arrival.getTime() - now.getTime()) / 60 / 1000;
-	console.log("Hour: " + arrival.getHours().toString() + " Minute: " + arrival.getMinutes().toString())
+	data.minutesAway = Math.round((arrival.getTime() - now.getTime()) / 60 / 1000);
 	var arrivalHour = prependZero(arrival.getHours().toString());
 	var arrivalMinute = prependZero(arrival.getMinutes().toString());
 	data.nextTime = arrivalHour + ":" + arrivalMinute;
-	console.log("The next train is at: " + data.nextTime);
-
 	return data;
 }
 
 function prependZero(s) {
-	console.log("inside prependZero. s = " + s + " s.length = " + s.length);
-	var x = s;
 	if (s.length === 1) {
-		x = "0" + s;
+		s = "0" + s;
 	}
-	return x;
+	return s;
 }
