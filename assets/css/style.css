@@ -1,0 +1,11 @@
+body {
+	background-image: url("../images/train_station.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	font-family: 'Montserrat Alternates', sans-serif;
+	font-size: 16px;
+}
+
+.panel>.panel-heading, .jumbotron {
+	background-color: #0066cc;
+}
